@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Welcome</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/libs/jquery/jquery.js"></script>
+        <script src="js/libs/knockout/knockout-min.js"></script>
+        <script src="js/libs/knockout.mapping/knockout.mapping.js"></script>
+        <script src="categorie.js"></script>
+   
+    </head>
+    <body>
+        <h2>Categories</h2>  
+        <div >
+        <table class='contactsEditor'>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>déscription</th>
+                </tr>
+                <tbody data-bind="foreach: categories">
+                    <tr>
+                        <td>
+                            <label data-bind='text: id' > </label>
+                        </td>
+                        <td>
+                            <input data-bind='value: nom, enable: (parseInt(id())%2 ===0)' />
+                        </td>
+                         <td >
+                            <input data-bind='value: description, enable: (parseInt(id())%2 ===0)' />  
+                        </td>
+                        <td>
+                            <input type="button" value="Supprimer" data-bind="click: $parent.remove" style="background:url(/delete-icon.png) no-repeat;"/> 
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div> <button data-bind="click: addItem">Add Item</button>
+            </div>
+        </div>
+        <div class="error"></div>  
+
+        <script>
+            /* 
+        Ceci est equivalent à une classe Java, on veut faire propre! 
+        */    
+          var Category = function(categorie) {  
+                this.id = ko.observable(categorie.id);  
+                this.nom = ko.observable(categorie.nom);  
+                this.description = ko.observable(categorie.description);  
+            };  
+            getData();
+            </script>
+    </body>
+</html>
